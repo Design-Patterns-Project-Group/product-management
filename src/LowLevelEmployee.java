@@ -1,11 +1,12 @@
 import java.util.*;
 
-public class LowLevelEmployee implements IEmployee{
+public class LowLevelEmployee extends Employee {
     
     private double salary;
     private String name; // of position
 
-    LowLevelEmployee(String name, double salary) {
+    public LowLevelEmployee(String name, double salary) {
+        super();
         this.setName(name);
         this.setSalary(salary);
     }
@@ -25,11 +26,13 @@ public class LowLevelEmployee implements IEmployee{
     public double getSalary() {
         return this.salary;
     };
-    
+
     public double getControlSpanSalary() {
         return this.getSalary();
     }
 
-
+    public String toString() {
+        return this.getName();
+    }
     
 }

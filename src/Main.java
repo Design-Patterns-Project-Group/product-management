@@ -39,7 +39,9 @@ public class Main{
  
         JFrame frame = new JFrame("Product management");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  
+ 
+        frame.add(new MainView());
+ 
         frame.pack();
         frame.setVisible(true);
     }

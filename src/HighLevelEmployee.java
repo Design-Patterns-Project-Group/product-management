@@ -1,13 +1,14 @@
 import java.util.*;
 import java.util.stream.Stream;
 
-public class HighLevelEmployee implements IEmployee, IEmployeeBoss{
+public class HighLevelEmployee extends Employee {
     private double salary;
     private String name; // of position
 
-    private List<IEmployee> subordinates;
+    private List<Employee> subordinates;
 
     HighLevelEmployee(String name, double salary) {
+        super();
         this.setName(name);
         this.setSalary(salary);
         this.subordinates = new ArrayList<>();
@@ -15,20 +16,20 @@ public class HighLevelEmployee implements IEmployee, IEmployeeBoss{
 
 
     public double getControlSpanSalary() {
-        Stream<IEmployee> stream1 = this.subordinates.stream();
+        Stream<Employee> stream1 = this.subordinates.stream();
         Stream<Double> stream2 = stream1.map(a -> a.getControlSpanSalary());
         return stream2.reduce(0.0, (a, b) -> a + b) + this.getSalary();
     };
 
-    public void addSubordinate(IEmployee e) {
+    public void addSubordinate(Employee e) {
         this.subordinates.add(e);
     };
 
-    public void removeSubordinate(IEmployee e) {
+    public void removeSubordinate(Employee e) {
         // Todo: implement this
     };
 
-    public IEmployee getSubordinate(int i) {
+    public Employee getSubordinate(int i) {
         return this.subordinates.get(i);
     };
 
@@ -47,5 +48,13 @@ public class HighLevelEmployee implements IEmployee, IEmployeeBoss{
     public double getSalary() {
         return this.salary;
     };
+
+    public String toString() {
+        return this.getName();
+    }
+
+    public List<Employee> getSubordinates() {
+        return this.subordinates;
+    }
 
 }
