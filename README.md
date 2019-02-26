@@ -23,4 +23,3 @@ the admin can add any type of role. Like the following
 * Tibebeselasie Mehari
 * Yosef Worku
 * Nahom Derese
-* Robel Getnet
