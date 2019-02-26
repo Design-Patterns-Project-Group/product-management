@@ -3,5 +3,6 @@ public interface IEmployee{
     void setSalary(double salary);
     String getName();
     double getSalary();
+    double getControlSpanSalary();
 }
 

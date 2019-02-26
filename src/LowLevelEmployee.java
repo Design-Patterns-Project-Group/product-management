@@ -25,6 +25,11 @@ public class LowLevelEmployee implements IEmployee{
     public double getSalary() {
         return this.salary;
     };
+    
+    public double getControlSpanSalary() {
+        return this.getSalary();
+    }
+
 
     
 }

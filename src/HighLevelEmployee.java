@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Stream;
 
 public class HighLevelEmployee implements IEmployee, IEmployeeBoss{
     private double salary;
@@ -14,7 +15,9 @@ public class HighLevelEmployee implements IEmployee, IEmployeeBoss{
 
 
     public double getControlSpanSalary() {
-        return 0.0;
+        Stream<IEmployee> stream1 = this.subordinates.stream();
+        Stream<Double> stream2 = stream1.map(a -> a.getControlSpanSalary());
+        return stream2.reduce(0.0, (a, b) -> a + b) + this.getSalary();
     };
 
     public void addSubordinate(IEmployee e) {
