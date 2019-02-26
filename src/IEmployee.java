@@ -1,7 +1,7 @@
-interface IEmployee{
-    private void setName(String name); // not the person's name rather the position
-    private void setSalary(double salary);
-    public String getName();
-    public double getSalary();
+public interface IEmployee{
+    void setName(String name); // not the person's name rather the position
+    void setSalary(double salary);
+    String getName();
+    double getSalary();
 }
 

@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class LowLevelEmployee implements IEmployee{
     
     private double salary;
@@ -8,20 +10,20 @@ public class LowLevelEmployee implements IEmployee{
         this.setSalary(salary);
     }
 
-    private void setName(String name) {
-        return null;
+    public void setName(String name) {
+        this.name = name;
     }; // not the person's name rather the position
   
-    private void setSalary(double salary) {
-        return null;
+    public void setSalary(double salary) {
+        this.salary = salary;
     };
 
     public String getName() {
-        return null;
+        return this.name;
     };
 
     public double getSalary() {
-        return null;
+        return this.salary;
     };
 
     

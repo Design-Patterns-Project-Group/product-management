@@ -1,10 +1,10 @@
-import java.utils.*;
+import java.util.*;
 
 public class HighLevelEmployee implements IEmployee, IEmployeeBoss{
     private double salary;
     private String name; // of position
 
-    private List<Employee> subordinates;
+    private List<IEmployee> subordinates;
 
     HighLevelEmployee(String name, double salary) {
         this.setName(name);
@@ -14,35 +14,35 @@ public class HighLevelEmployee implements IEmployee, IEmployeeBoss{
 
 
     public double getControlSpanSalary() {
-        return null;
+        return 0.0;
     };
 
-    public void addSubordinate(Employee e) {
-        return null;
+    public void addSubordinate(IEmployee e) {
+        this.subordinates.add(e);
     };
 
-    public void removeSubordinate(Employee e) {
-        return null;
+    public void removeSubordinate(IEmployee e) {
+        // Todo: implement this
     };
 
-    public Employee getSubordinate(int i) {
-        return null;
+    public IEmployee getSubordinate(int i) {
+        return this.subordinates.get(i);
     };
 
-    private void setName(String name) {
-        return null;
+    public void setName(String name) {
+        this.name = name;
     }; // not the person's name rather the position
   
-    private void setSalary(double salary) {
-        return null;
+    public void setSalary(double salary) {
+        this.salary = salary;
     };
 
     public String getName() {
-        return null;
+        return this.name;
     };
 
     public double getSalary() {
-        return null;
+        return this.salary;
     };
 
 }
