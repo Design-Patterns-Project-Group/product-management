@@ -1,3 +1,5 @@
+import javax.swing.JFrame;
+
 public class Main{
 
     public static void main(String... args) {
@@ -25,5 +27,22 @@ public class Main{
         System.out.println("ceo's salary: " + String.valueOf(ceo.getSalary()));
         System.out.println("ceo's control-span salary: " + String.valueOf(ceo.getControlSpanSalary()));
 
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                bootstrapGUI();
+            }
+        });
+
     }
+
+    private static void bootstrapGUI() {
+ 
+        JFrame frame = new JFrame("Product management");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+
 }
