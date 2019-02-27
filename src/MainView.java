@@ -14,29 +14,13 @@ import javax.swing.event.TreeSelectionListener;
 public class MainView extends JPanel implements TreeSelectionListener {
     private JTree tree;
     private JPanel detailsPanel;
+    private JLabel positionValue;
+    private JLabel salaryValue;
+    private JLabel controlSpanSalaryValue;
 
-    public MainView() {
+    public MainView(HighLevelEmployee ceo) {
         super(new GridLayout(1,0));
 
-        HighLevelEmployee ceo = new HighLevelEmployee("CEO", 10000.0);
-
-        HighLevelEmployee vice1 = new HighLevelEmployee("Vice p. #1", 8100.0);
-        HighLevelEmployee vice2 = new HighLevelEmployee("Vice p. #2", 8100.0);
-
-        ceo.addSubordinate(vice1);
-        ceo.addSubordinate(vice2);
-
-        vice1.addSubordinate(new LowLevelEmployee("teacher #1", 4000.0));
-        vice1.addSubordinate(new LowLevelEmployee("teacher #2", 4000.0));
-        vice1.addSubordinate(new LowLevelEmployee("teacher #3", 4000.0));
-        vice1.addSubordinate(new LowLevelEmployee("teacher #4", 4000.0));
-        vice1.addSubordinate(new LowLevelEmployee("teacher #5", 4000.0));
-
-        vice2.addSubordinate(new LowLevelEmployee("teacher #1", 4000.0));
-        vice2.addSubordinate(new LowLevelEmployee("teacher #2", 4000.0));
-        vice2.addSubordinate(new LowLevelEmployee("teacher #3", 4000.0));
-        vice2.addSubordinate(new LowLevelEmployee("teacher #4", 4000.0));
-        vice2.addSubordinate(new LowLevelEmployee("teacher #5", 4000.0));
 
         DefaultMutableTreeNode top = createNodes(ceo);
 
@@ -57,21 +41,21 @@ public class MainView extends JPanel implements TreeSelectionListener {
         detailsPanel.add(positionLabel);
         
 
-        JLabel positionValue = new JLabel("<undefined>");
+        positionValue = new JLabel("<undefined>");
         detailsPanel.add(positionValue);
 
         JLabel salaryLabel = new JLabel("Salary (individual): ");
         detailsPanel.add(salaryLabel);
         
 
-        JLabel salaryValue = new JLabel("<undefined>");
+        salaryValue = new JLabel("<undefined>");
         detailsPanel.add(salaryValue);
 
         JLabel controlSpanSalaryLabel = new JLabel("Control-span Salary: ");
         detailsPanel.add(controlSpanSalaryLabel);
         
 
-        JLabel controlSpanSalaryValue = new JLabel("<undefined>");
+        controlSpanSalaryValue = new JLabel("<undefined>");
         detailsPanel.add(controlSpanSalaryValue);
 
 
@@ -154,15 +138,24 @@ public class MainView extends JPanel implements TreeSelectionListener {
 
     private void displayHighLevelEmployeeDetails(HighLevelEmployee employee) {
         System.out.println("position: " + employee.getName());
+        this.positionValue.setText(employee.getName());
+
         System.out.println("salary: " + String.valueOf(employee.getSalary()));
+        this.salaryValue.setText(String.valueOf(employee.getSalary()));
+
         System.out.println("control-span salary: " + String.valueOf(employee.getControlSpanSalary()));
+        this.controlSpanSalaryValue.setText(String.valueOf(employee.getControlSpanSalary()));
     }
 
     private void displayLowLevelEmployeeDetails(LowLevelEmployee employee) {
         System.out.println("position: " + employee.getName());
-        System.out.println("salary: " + String.valueOf(employee.getSalary()));
-    }
+        this.positionValue.setText(employee.getName());
 
+        System.out.println("salary: " + String.valueOf(employee.getSalary()));
+        this.salaryValue.setText(String.valueOf(employee.getSalary()));
+
+        this.controlSpanSalaryValue.setText("None");
+    }
 
 
     public static void setNodeExpandedState(JTree tree, DefaultMutableTreeNode node, boolean expanded) {

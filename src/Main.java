@@ -23,24 +23,20 @@ public class Main{
         vice2.addSubordinate(new LowLevelEmployee("teacher #4", 4000.0));
         vice2.addSubordinate(new LowLevelEmployee("teacher #5", 4000.0));
 
-        System.out.println("ceo's position(*SHRUG*): " + ceo.getName());
-        System.out.println("ceo's salary: " + String.valueOf(ceo.getSalary()));
-        System.out.println("ceo's control-span salary: " + String.valueOf(ceo.getControlSpanSalary()));
-
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                bootstrapGUI();
+                bootstrapGUI(ceo);
             }
         });
 
     }
 
-    private static void bootstrapGUI() {
+    private static void bootstrapGUI(HighLevelEmployee ceo) {
  
         JFrame frame = new JFrame("Product management");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
-        frame.add(new MainView());
+        frame.add(new MainView(ceo));
  
         frame.pack();
         frame.setVisible(true);
