@@ -1,17 +1,14 @@
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.Dimension;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.UIManager;
- 
-import javax.swing.JTree;
+import javax.swing.*;
+import java.util.*;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 import javax.swing.event.TreeSelectionEvent;
-import java.util.*;
 import javax.swing.event.TreeSelectionListener;
 
 public class MainView extends JPanel implements TreeSelectionListener {
@@ -51,6 +48,49 @@ public class MainView extends JPanel implements TreeSelectionListener {
 
         setNodeExpandedState(tree, top, true);
         detailsPanel = new JPanel();
+
+        SpringLayout layout = new SpringLayout();
+        detailsPanel.setLayout(layout);
+        
+
+        JLabel positionLabel = new JLabel("Position: ");
+        detailsPanel.add(positionLabel);
+        
+
+        JLabel positionValue = new JLabel("<undefined>");
+        detailsPanel.add(positionValue);
+
+        JLabel salaryLabel = new JLabel("Salary (individual): ");
+        detailsPanel.add(salaryLabel);
+        
+
+        JLabel salaryValue = new JLabel("<undefined>");
+        detailsPanel.add(salaryValue);
+
+        JLabel controlSpanSalaryLabel = new JLabel("Control-span Salary: ");
+        detailsPanel.add(controlSpanSalaryLabel);
+        
+
+        JLabel controlSpanSalaryValue = new JLabel("<undefined>");
+        detailsPanel.add(controlSpanSalaryValue);
+
+
+        
+        layout.putConstraint(SpringLayout.WEST, positionLabel, 5, SpringLayout.WEST, detailsPanel);
+		layout.putConstraint(SpringLayout.NORTH, positionLabel, 5, SpringLayout.NORTH, detailsPanel);
+		layout.putConstraint(SpringLayout.WEST, positionValue, 80, SpringLayout.EAST, positionLabel);
+		layout.putConstraint(SpringLayout.NORTH, positionValue, 5, SpringLayout.NORTH, detailsPanel);
+
+        layout.putConstraint(SpringLayout.WEST, salaryLabel, 5, SpringLayout.WEST, detailsPanel);
+		layout.putConstraint(SpringLayout.NORTH, salaryLabel, 25, SpringLayout.NORTH, detailsPanel);
+		layout.putConstraint(SpringLayout.WEST, salaryValue, 10, SpringLayout.EAST, salaryLabel);
+		layout.putConstraint(SpringLayout.NORTH, salaryValue, 25, SpringLayout.NORTH, detailsPanel);
+
+        layout.putConstraint(SpringLayout.WEST, controlSpanSalaryLabel, 5, SpringLayout.WEST, detailsPanel);
+		layout.putConstraint(SpringLayout.NORTH, controlSpanSalaryLabel, 45, SpringLayout.NORTH, detailsPanel);
+		layout.putConstraint(SpringLayout.WEST, controlSpanSalaryValue, 2, SpringLayout.EAST, controlSpanSalaryLabel);
+		layout.putConstraint(SpringLayout.NORTH, controlSpanSalaryValue, 45, SpringLayout.NORTH, detailsPanel);
+
         JScrollPane treeView = new JScrollPane(tree);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -58,11 +98,11 @@ public class MainView extends JPanel implements TreeSelectionListener {
         splitPane.setBottomComponent(detailsPanel);
 
         Dimension minimumSize = new Dimension(100, 50);
-        detailsPanel.setMinimumSize(minimumSize);
+        // detailsPanel.setMinimumSize(minimumSize);
         treeView.setMinimumSize(minimumSize);
         splitPane.setDividerLocation(200); 
         splitPane.setPreferredSize(new Dimension(500, 300));
-
+        detailsPanel.setPreferredSize(new Dimension(50, 10));
         add(splitPane);
         // add(treeView);
     }
