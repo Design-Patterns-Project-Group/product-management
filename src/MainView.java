@@ -108,7 +108,7 @@ public class MainView extends JPanel implements TreeSelectionListener {
                 displayHighLevelEmployeeDetails(employee); 
             }
         } catch(Exception err) {
-            System.out.println("error:  " + err.getMessage());
+            // System.out.println("error:  " + err.getMessage());
         }
     }
 
