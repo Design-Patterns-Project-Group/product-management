@@ -17,7 +17,17 @@ as the salary of that person as well as the combined salaries of all of his or h
 the admin can add any type of role. Like the following
 
 ## Proposed Answer
-    # Tobe Impmented
+    The design pattern used for this particular problem is composite(since it is a tree-like structure by default)
+
+## Demo (Screenshots)
+##### Screenshot 1: on the High-ranking employee
+![Screenshot #1](https://github.com/Design-Patterns-Project-Group/product-management/raw/master/screenshots/1.png)
+
+##### Screenshot 2: on Local Bosses
+![Screenshot #2](https://github.com/Design-Patterns-Project-Group/product-management/raw/master/screenshots/2.png)
+
+##### Screenshot 3: on low-level employees
+![Screenshot #3](https://github.com/Design-Patterns-Project-Group/product-management/raw/master/screenshots/3.png)
 
 ## Group Members
 * Tibebeselasie Mehari
