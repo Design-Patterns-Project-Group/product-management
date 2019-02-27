@@ -1,17 +1,22 @@
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.UIManager;
  
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 import javax.swing.event.TreeSelectionEvent;
+import java.util.*;
 import javax.swing.event.TreeSelectionListener;
 
 public class MainView extends JPanel implements TreeSelectionListener {
     private JTree tree;
+    private JPanel detailsPanel;
 
     public MainView() {
         super(new GridLayout(1,0));
@@ -44,20 +49,22 @@ public class MainView extends JPanel implements TreeSelectionListener {
 
         tree.addTreeSelectionListener(this);
 
+        setNodeExpandedState(tree, top, true);
+        detailsPanel = new JPanel();
         JScrollPane treeView = new JScrollPane(tree);
 
-        // JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-        // splitPane.setTopComponent(treeView);
-        // splitPane.setBottomComponent(htmlView);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        splitPane.setTopComponent(treeView);
+        splitPane.setBottomComponent(detailsPanel);
 
-        // Dimension minimumSize = new Dimension(100, 50);
-        // htmlView.setMinimumSize(minimumSize);
-        // treeView.setMinimumSize(minimumSize);
-        // splitPane.setDividerLocation(100); 
-        // splitPane.setPreferredSize(new Dimension(500, 300));
+        Dimension minimumSize = new Dimension(100, 50);
+        detailsPanel.setMinimumSize(minimumSize);
+        treeView.setMinimumSize(minimumSize);
+        splitPane.setDividerLocation(200); 
+        splitPane.setPreferredSize(new Dimension(500, 300));
 
-        // add(splitPane);
-        add(treeView);
+        add(splitPane);
+        // add(treeView);
     }
 
     public void valueChanged(TreeSelectionEvent e) {
@@ -114,5 +121,23 @@ public class MainView extends JPanel implements TreeSelectionListener {
     private void displayLowLevelEmployeeDetails(LowLevelEmployee employee) {
         System.out.println("position: " + employee.getName());
         System.out.println("salary: " + String.valueOf(employee.getSalary()));
+    }
+
+
+
+    public static void setNodeExpandedState(JTree tree, DefaultMutableTreeNode node, boolean expanded) {
+        ArrayList<DefaultMutableTreeNode> list = Collections.list(node.children());
+        for (DefaultMutableTreeNode treeNode : list) {
+            setNodeExpandedState(tree, treeNode, expanded);
+        }
+        if (!expanded && node.isRoot()) {
+            return;
+        }
+        TreePath path = new TreePath(node.getPath());
+        if (expanded) {
+            tree.expandPath(path);
+        } else {
+            tree.collapsePath(path);
+        }
     }
 }
